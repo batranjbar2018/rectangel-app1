@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Rectangle from './components/Rectangle';
 
-function App() {
+function App() { 
+ // const radius=[2,3,4] ;
+ //let x,y;
+  const dimention=[
+    {
+      x:20,
+      y:30,
+    },
+    {
+      x:30,
+      y:30,
+    },
+    
+    {
+      x:40,
+      y:30,
+    },
+  ];
+const calculateArea=xy=>alert("x*y = " + xy.x*xy.y);  
+const drawShap=xy=>{
+  var c = document.getElementById("myCanvas");
+  document.getElementById("myCanvas").style.padding = "50px 20px 20px 30px"; 
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.rect(xy.x, xy.y, 150, 100);
+  ctx.stroke();
+};  
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+          <React.Fragment>
+          {
+              dimention.map((xy,index)=><Rectangle  xy={xy} area={calculateArea}shap ={drawShap} Key={index} />)
+           }  
+            
+          </React.Fragment>
+         );
+  }
 
 export default App;
